@@ -2,7 +2,7 @@ name: resume_crafter
 
 concurrency:
   group: $-$
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 on:
   push:
