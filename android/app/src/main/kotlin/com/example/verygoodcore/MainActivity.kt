@@ -1,4 +1,4 @@
-package com.example.verygoodcore.resume_crafter
+package com.smart.resume_crafter
 
 import io.flutter.embedding.android.FlutterActivity
 
