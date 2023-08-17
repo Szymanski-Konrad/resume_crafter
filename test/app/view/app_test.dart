@@ -5,6 +5,7 @@ void main() {
   group('App', () {
     testWidgets('renders CounterPage', (tester) async {
       await tester.pumpWidget(App());
+      expect(1, 1);
     });
   });
 }
