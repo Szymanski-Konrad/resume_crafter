@@ -127,3 +127,5 @@ app.*.map.json
 
 # Project files
 config.json
+lib/injection/injection.config.dart
+lib/router/app_router.gr.dart
