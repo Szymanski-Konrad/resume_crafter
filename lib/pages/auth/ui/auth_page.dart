@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:resume_crafter/app/resources/assets.dart';
 import 'package:resume_crafter/app/resources/paddings.dart';
 import 'package:resume_crafter/app/resources/spacings.dart';
+import 'package:resume_crafter/pages/auth/cubit/auth_cubit.dart';
+import 'package:resume_crafter/pages/auth/cubit/auth_state.dart';
 
 @RoutePage()
 class AuthPage extends StatelessWidget {
@@ -12,31 +15,45 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(128, 149, 144, 1.0),
-      body: SafeArea(
-        child: Padding(
-          padding: Paddings.all16,
-          child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(Assets.auth1),
-              _AuthButton(
-                iconData: FontAwesomeIcons.google,
-                text: 'Connect with Google',
-              ),
-              Spacings.s8,
-              _AuthButton(
-                iconData: FontAwesomeIcons.facebook,
-                text: 'Connect with Google',
-              ),
-              Spacings.s32,
-              _AuthButton(
-                iconData: FontAwesomeIcons.envelope,
-                text: 'Connect with Email',
-              ),
-            ],
-          ),
+      backgroundColor: const Color.fromRGBO(128, 149, 144, 1),
+      body: BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, state) {
+          return const _Content();
+        },
+      ),
+    );
+  }
+}
+
+class _Content extends StatelessWidget {
+  const _Content();
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: Paddings.all16,
+        child: Column(
+          // crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(Assets.auth1),
+            _AuthButton(
+              onPressed: context.read<AuthCubit>().signInWithGoogle,
+              iconData: LineIcons.googleLogo,
+              text: 'Connect with Google',
+            ),
+            Spacings.s8,
+            const _AuthButton(
+              iconData: LineIcons.linkedin,
+              text: 'Connect with LinkedIn',
+            ),
+            Spacings.s32,
+            const _AuthButton(
+              iconData: LineIcons.envelope,
+              text: 'Connect with Email',
+            ),
+          ],
         ),
       ),
     );
@@ -44,10 +61,15 @@ class AuthPage extends StatelessWidget {
 }
 
 class _AuthButton extends StatelessWidget {
-  const _AuthButton({required this.iconData, required this.text});
+  const _AuthButton({
+    required this.iconData,
+    required this.text,
+    this.onPressed,
+  });
 
   final IconData iconData;
   final String text;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +78,16 @@ class _AuthButton extends StatelessWidget {
         minimumSize: Size(MediaQuery.of(context).size.width * 0.6, 50),
         backgroundColor: Colors.white,
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       icon: Icon(
         iconData,
         color: Colors.blue,
       ),
       label: Text(
         text,
-        style: TextStyle(color: Colors.black),
+        style: const TextStyle(
+          color: Colors.black,
+        ),
       ),
     );
   }

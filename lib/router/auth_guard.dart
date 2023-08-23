@@ -1,6 +1,5 @@
 //ignore_for_file: public_member_api_docs
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:resume_crafter/router/app_router.gr.dart';
 
 // mock auth state
@@ -27,16 +26,5 @@ class AuthGuard extends AutoRouteGuard {
     } else {
       resolver.next();
     }
-  }
-}
-
-class AuthService extends ChangeNotifier {
-  bool _isAuthenticated = false;
-
-  bool get isAuthenticated => _isAuthenticated;
-
-  set isAuthenticated(bool value) {
-    _isAuthenticated = value;
-    notifyListeners();
   }
 }
