@@ -1,5 +1,9 @@
 //ignore_for_file: public_member_api_docs
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:resume_crafter/data/auth/repository/auth_repository.dart';
+import 'package:resume_crafter/injection/injection.dart';
 import 'package:resume_crafter/router/app_router.gr.dart';
 
 // mock auth state
@@ -7,8 +11,14 @@ bool isAuthenticated = false;
 
 class AuthGuard extends AutoRouteGuard {
   @override
-  void onNavigation(NavigationResolver resolver, StackRouter router) {
-    if (!isAuthenticated) {
+  Future<void> onNavigation(
+    NavigationResolver resolver,
+    StackRouter router,
+  ) async {
+    final authRepository = getIt<AuthRepository>();
+    final user = await authRepository.getCurrentUser();
+    log(user.toString());
+    if (user == null) {
       // ignore: unawaited_futures
       router.push(
         const AuthRoute(

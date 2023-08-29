@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:appwrite/models.dart';
 import 'package:injectable/injectable.dart';
 import 'package:resume_crafter/data/auth/repository/auth_repository.dart';
@@ -9,6 +11,8 @@ class AppwriteAuthRepository implements AuthRepository {
   AppwriteAuthRepository({required this.authService});
 
   final AuthService authService;
+  //TODO: Add app model for user and not use appwrite model in repository
+  User? _cachedUser;
 
   @override
   Future<void> signIn({required String email, required String password}) {
@@ -19,8 +23,12 @@ class AppwriteAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<void> signInOAuth({required SupportedOAuthServices oAuthService}) {
-    return authService.signInOAuth(oAuthService: oAuthService);
+  Future<void> signInOAuth({
+    required SupportedOAuthServices oAuthService,
+  }) async {
+    await authService.signInOAuth(oAuthService: oAuthService);
+    final account = await getCurrentUser();
+    log(account.toString());
   }
 
   @override
@@ -37,7 +45,8 @@ class AppwriteAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<User> getCurrentUser() {
-    return authService.getCurrentUser();
+  Future<User?> getCurrentUser() async {
+    _cachedUser ??= await authService.getCurrentUser();
+    return _cachedUser;
   }
 }

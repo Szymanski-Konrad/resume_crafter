@@ -23,4 +23,9 @@ class AuthCubit extends Cubit<AuthState> {
       );
     }
   }
+
+  Future<void> getCurrentUser() async {
+    final user = await authRepository.getCurrentUser();
+    emit(state.copyWith(authUser: user));
+  }
 }

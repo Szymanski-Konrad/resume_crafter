@@ -15,24 +15,40 @@ class AppwriteAuthService implements AuthService {
 
   @override
   Future<void> signIn({required String email, required String password}) async {
-    await apiService.account.createEmailSession(
-      email: email,
-      password: password,
-    );
+    try {
+      await apiService.account.createEmailSession(
+        email: email,
+        password: password,
+      );
+    } catch (e, stack) {
+      log('Error while sign in', error: e, stackTrace: stack);
+    }
   }
 
   @override
   Future<void> signInOAuth({
     required SupportedOAuthServices oAuthService,
   }) async {
-    final result = await apiService.account
-        .createOAuth2Session(provider: oAuthService.name);
-    log(result.toString());
+    try {
+      final result = await apiService.account
+          .createOAuth2Session(provider: oAuthService.name);
+      log(result.toString());
+    } catch (e, stack) {
+      log(
+        'Error while sign in with $oAuthService',
+        error: e,
+        stackTrace: stack,
+      );
+    }
   }
 
   @override
   Future<void> signOut() async {
-    await apiService.account.deleteSession(sessionId: 'current');
+    try {
+      await apiService.account.deleteSession(sessionId: 'current');
+    } catch (e, stack) {
+      log('Error while sign out', error: e, stackTrace: stack);
+    }
   }
 
   @override
@@ -45,7 +61,12 @@ class AppwriteAuthService implements AuthService {
   }
 
   @override
-  Future<User> getCurrentUser() async {
-    return apiService.account.get();
+  Future<User?> getCurrentUser() async {
+    try {
+      return await apiService.account.get();
+    } catch (e, stack) {
+      log('getCurrentUser error', error: e, stackTrace: stack);
+      return null;
+    }
   }
 }
