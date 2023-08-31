@@ -81,7 +81,6 @@ linter:
     - eol_at_end_of_file
     - exhaustive_cases
     - file_names
-    - flutter_style_todos
     - hash_and_equals
     - implicit_call_tearoffs
     - implementation_imports
@@ -149,7 +148,7 @@ linter:
     - prefer_typing_uninitialized_variables
     - prefer_void_to_null
     - provide_deprecation_message
-    - public_member_api_docs
+    # - public_member_api_docs
     - recursive_getters
     - require_trailing_commas
     - secure_pubspec_urls
