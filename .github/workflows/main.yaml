@@ -33,4 +33,4 @@ jobs:
       - name: Run tests
         run: flutter test --coverage
       - name: Build Android app
-        run: flutter build apk --flavor development --target lib/main_development.dart
+        run: flutter build apk --debug --flavor development --target lib/main_development.dart
