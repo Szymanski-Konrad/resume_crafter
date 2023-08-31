@@ -21,7 +21,7 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
       - name: Install and set Flutter version
-        uses: subosito/flutter-action@v1.4.0
+        uses: subosito/flutter-action@v2.10.0
         with:
           flutter-version: '3.10.6'
       - name: Pub get
