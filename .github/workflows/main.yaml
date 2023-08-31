@@ -21,7 +21,7 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
       - name: Install and set Flutter version
-        uses: subosito/flutter-action@v1.4.0
+        uses: subosito/flutter-action@v2.10.0
         with:
           flutter-version: '3.10.6'
       - name: Pub get
@@ -33,4 +33,4 @@ jobs:
       - name: Run tests
         run: flutter test --coverage
       - name: Build Android app
-        run: flutter build apk --flavor dev
+        run: flutter build apk --debug --flavor development --target lib/main_development.dart
