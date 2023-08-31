@@ -133,3 +133,4 @@ lib/injection/injection.config.dart
 lib/router/app_router.gr.dart
 *.freezed.dart
 *.g.dart
+lib/configuration/config.json
