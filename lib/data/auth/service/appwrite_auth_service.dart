@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:resume_crafter/app/appwrite_api_service.dart';
 import 'package:resume_crafter/data/auth/service/auth_service.dart';
@@ -30,8 +31,10 @@ class AppwriteAuthService implements AuthService {
     required SupportedOAuthServices oAuthService,
   }) async {
     try {
-      final result = await apiService.account
-          .createOAuth2Session(provider: oAuthService.name);
+      final result = await apiService.account.createOAuth2Session(
+        provider: oAuthService.name,
+        success: !kIsWeb ? null : 'http://localhost:8000/auth.html',
+      );
       log(result.toString());
     } catch (e, stack) {
       log(

@@ -7,6 +7,7 @@ import 'package:resume_crafter/app/resources/paddings.dart';
 import 'package:resume_crafter/app/resources/spacings.dart';
 import 'package:resume_crafter/pages/auth/cubit/auth_cubit.dart';
 import 'package:resume_crafter/pages/auth/cubit/auth_state.dart';
+import 'package:resume_crafter/router/app_router.gr.dart';
 
 @RoutePage()
 class AuthPage extends StatelessWidget {
@@ -28,18 +29,24 @@ class AuthPage extends StatelessWidget {
 class _Content extends StatelessWidget {
   const _Content();
 
+  void onSignIn(BuildContext context) => context.router.pushAndPopUntil(
+        const HomeRoute(),
+        predicate: (_) => false,
+      );
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
         padding: Paddings.all16,
         child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(Assets.auth1),
+            Expanded(child: Image.asset(Assets.auth1)),
             _AuthButton(
-              onPressed: context.read<AuthCubit>().signInWithGoogle,
+              onPressed: () => context.read<AuthCubit>().signInWithGoogle(
+                    () => onSignIn(context),
+                  ),
               iconData: LineIcons.googleLogo,
               text: 'Connect with Google',
             ),

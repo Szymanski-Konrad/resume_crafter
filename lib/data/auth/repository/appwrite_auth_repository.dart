@@ -11,7 +11,7 @@ class AppwriteAuthRepository implements AuthRepository {
   AppwriteAuthRepository({required this.authService});
 
   final AuthService authService;
-  //TODO: Add app model for user and not use appwrite model in repository
+  // TODO(user): Add app model for user and not use appwrite model in repository
   User? _cachedUser;
 
   @override
