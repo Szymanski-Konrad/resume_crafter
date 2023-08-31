@@ -7,6 +7,7 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
+  appwrite: ^10.0.0
   auto_route: 7.8.0
   auto_route_generator: ^7.3.1
   bloc: ^8.1.2
