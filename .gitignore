@@ -55,6 +55,8 @@ linked_*.ds
 unlinked.ds
 unlinked_spec.ds
 .fvm/
+*.freezed.dart
+*.g.dart
 
 # Android related
 **/android/**/gradle-wrapper.jar
@@ -129,3 +131,4 @@ app.*.map.json
 config.json
 lib/injection/injection.config.dart
 lib/router/app_router.gr.dart
+
