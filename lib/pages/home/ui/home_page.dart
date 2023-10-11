@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:resume_crafter/app/resources/spacings.dart';
 import 'package:resume_crafter/l10n/l10n.dart';
+import 'package:resume_crafter/router/app_router.gr.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -11,7 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Resume Crafter'),
+        title: Text(context.l10n.appName),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -27,7 +28,9 @@ class HomePage extends StatelessWidget {
               MenuButton(
                 iconData: Icons.create,
                 title: context.l10n.createResume,
-                onTap: () {},
+                onTap: () {
+                  context.router.push(const CreateResumeRoute());
+                },
               ),
               MenuButton(
                 iconData: Icons.format_list_bulleted,
