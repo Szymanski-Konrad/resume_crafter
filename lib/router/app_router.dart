@@ -14,6 +14,7 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: AuthRoute.page),
         AutoRoute(page: SignInRoute.page),
         AutoRoute(page: SignUpRoute.page),
+        AutoRoute(page: CreateResumeRoute.page),
         RedirectRoute(path: '*', redirectTo: '/'),
       ];
 }

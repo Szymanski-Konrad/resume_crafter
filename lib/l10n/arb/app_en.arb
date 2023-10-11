@@ -5,5 +5,20 @@
     "myResumes": "My Resumes",
     "tips": "Tips",
     "profile": "Profile",
-    "settings": "Settings"
+    "settings": "Settings",
+    "personalInfo": "Personal info",
+    "introduceMe": "Introduce me",
+    "workExperience": "Work Experience",
+    "skills": "Skills",
+    "education": "Education",
+    "links": "Links",
+    "langugages": "Languages",
+    "projects": "Projects",
+    "references": "References",
+    "contact": "Contact",
+    "hobbies": "Hobbies",
+    "publications": "Publications",
+    "certificates": "Certificates",
+    "additionalSections": "AdditionalSections",
+    "rodo": "Rodo"
 }

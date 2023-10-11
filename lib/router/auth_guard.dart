@@ -18,7 +18,7 @@ class AuthGuard extends AutoRouteGuard {
     final authRepository = getIt<AuthRepository>();
     final user = await authRepository.getCurrentUser();
     log(user.toString());
-    if (user == null) {
+    if (user != null) {
       // ignore: unawaited_futures
       router.push(
         const AuthRoute(
